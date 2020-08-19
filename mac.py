@@ -1,6 +1,7 @@
 import subprocess
 import optparse
-import re 
+import re
+print("Welcome to ST Mac Changer") 
 
 def get_arguments():
     parser = optparse.OptionParser()
@@ -25,8 +26,6 @@ def mac_changer(interface,new_mac):
 def current_mac_address(interface):
     ifconfig_result = subprocess.check_output(["ifconfig",interface]).strip()
     mac_address_result = re.search(rb"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",ifconfig_result)
-    type(mac_address_result)
-    print(type)
     print(mac_address_result)
     if mac_address_result:
         return mac_address_result.group(0)
@@ -39,11 +38,6 @@ current_mac = current_mac_address(options.interface)
 print(f"Current Mac = {current_mac}")
 mac_changer(options.interface, options.new_mac)
 
-current_mac = current_mac_address(options.interface)
-if current_mac == options.new_mac:
-    print(f'[+]Mac Address Successfully Changed to {current_mac} ')
-else:
-    print("[-] Mac Address Did Not Changed")
 
 
 
